@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090910">
+  <title>PARTY | Speaker Controller</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">♫</div>
+      <div><h2>PARTY<span>.</span></h2><small>SPEAKER CONTROL SYSTEM</small></div>
+    </div>
+    <div class="connection"><span class="status-dot"></span><span id="connectionStatus">Audio system ready</span></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">YOUR PERSONAL DJ STATION</p>
+        <h1>CONTROL THE<br><span>BEAT.</span></h1>
+        <p class="description">Your music. Your sound. Your party.</p>
+        <button class="primary-btn" id="connectBtn">⌁ CONNECT SPEAKER</button>
+        <p class="hint" id="connectHint">Pair your speaker through your device's Bluetooth settings.</p>
+      </div>
+      <div class="speaker-visual" aria-label="Animated speaker illustration">
+        <div class="speaker-glow"></div>
+        <div class="speaker">
+          <div class="speaker-top"></div>
+          <div class="speaker-ring"><div class="speaker-center"><div class="speaker-logo">♫</div></div></div>
+          <div class="speaker-bottom"><span></span><span></span><span></span></div>
+        </div>
+        <div class="sound-waves"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </section>
+
+    <section class="dashboard">
+      <div class="panel volume-panel">
+        <div class="panel-heading"><div><small>AUDIO OUTPUT</small><h3>Master Volume</h3></div><span class="panel-icon">🔊</span></div>
+        <div class="volume-display"><h1 id="volumeValue">70</h1><span>%</span></div>
+        <input type="range" id="volumeSlider" min="0" max="100" value="70" aria-label="Master volume">
+        <div class="range-labels"><span>MINIMUM</span><span>MAXIMUM</span></div>
+        <div class="volume-buttons">
+          <button id="muteBtn">MUTE</button><button id="volumeDown" aria-label="Volume down">−</button>
+          <button id="volumeUp" aria-label="Volume up">+</button><button id="maxVolume">MAX</button>
+        </div>
+      </div>
+
+      <div class="panel player-panel">
+        <div class="panel-heading"><div><small>MEDIA CENTER</small><h3>Music Player</h3></div><span class="panel-icon">🎵</span></div>
+        <label class="upload-btn" for="musicFile">＋ SELECT MUSIC FILE</label>
+        <input type="file" id="musicFile" accept="audio/*" hidden>
+        <div class="track-info">
+          <div class="track-cover">♫</div>
+          <div><h4 id="trackName">No music selected</h4><small id="trackArtist">Upload your audio</small></div>
+        </div>
+        <div class="player-progress">
+          <span id="currentTime">0:00</span>
+          <input type="range" id="seekSlider" min="0" max="1000" value="0" aria-label="Seek music">
+          <span id="duration">0:00</span>
+        </div>
+        <div class="player-controls"><button id="stopBtn" aria-label="Stop">■</button><button id="playBtn" class="play-btn" aria-label="Play">▶</button></div>
+        <audio id="audioPlayer"></audio>
+        <div class="player-status" id="playerStatus">READY TO PLAY</div>
+      </div>
+
+      <div class="panel equalizer-panel">
+        <div class="panel-heading"><div><small>SOUND ENGINE</small><h3>Equalizer</h3></div><span class="panel-icon">🎚️</span></div>
+        <div class="presets">
+          <button class="preset active" data-preset="normal">NORMAL</button>
+          <button class="preset" data-preset="bass">BASS</button>
+          <button class="preset" data-preset="pop">POP</button>
+          <button class="preset" data-preset="rock">ROCK</button>
+        </div>
+        <div class="eq-controls">
+          <div class="eq-control"><label for="bassSlider">BASS</label><input type="range" id="bassSlider" min="-12" max="12" value="0"><span id="bassValue">0 dB</span></div>
+          <div class="eq-control"><label for="midSlider">MID</label><input type="range" id="midSlider" min="-12" max="12" value="0"><span id="midValue">0 dB</span></div>
+          <div class="eq-control"><label for="trebleSlider">TREBLE</label><input type="range" id="trebleSlider" min="-12" max="12" value="0"><span id="trebleValue">0 dB</span></div>
+        </div>
+      </div>
+
+      <div class="panel effects-panel">
+        <div class="panel-heading"><div><small>PARTY MODE</small><h3>DJ Effects</h3></div><span class="panel-icon">✨</span></div>
+        <div class="effect-item"><div><b>Extra Bass</b><small>Boost low frequencies</small></div><label class="switch"><input type="checkbox" id="bassBoost"><span class="switch-slider"></span></label></div>
+        <div class="effect-item"><div><b>Echo Effect</b><small>DJ-style sound delay</small></div><label class="switch"><input type="checkbox" id="echoEffect"><span class="switch-slider"></span></label></div>
+        <div class="effect-item"><div><b>RGB Lighting</b><small>Animated website party colors</small></div><label class="switch"><input type="checkbox" id="rgbEffect"><span class="switch-slider"></span></label></div>
+        <div class="effect-item"><div><b>Visualizer</b><small>Animated sound bars</small></div><label class="switch"><input type="checkbox" id="visualizerEffect" checked><span class="switch-slider"></span></label></div>
+      </div>
+    </section>
+
+    <section class="panel visualizer-panel">
+      <div class="panel-heading"><div><small>LIVE AUDIO DISPLAY</small><h3>Sound Visualizer</h3></div><span class="live-indicator">● LIVE</span></div>
+      <div class="visualizer" id="visualizer" aria-label="Audio frequency visualizer"></div>
+    </section>
+  </main>
+
+  <footer><p>PARTY. SPEAKER CONTROLLER</p><small>CONTROL YOUR SOUND. OWN THE NIGHT.</small></footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
